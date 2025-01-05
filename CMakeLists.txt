@@ -8,11 +8,12 @@ file(GLOB FastLED_SRCS "src/*.cpp" "src/fl/*.cpp")
 list(REMOVE_ITEM FastLED_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/src/stub_main.cpp")
 
 file(GLOB ESP32_SRCS "src/platforms/esp/32/*.cpp")
+file(GLOB ESP32_RMT_COMPONENT_SRCS "src/platforms/esp/32/rmt/*.cpp")
 file(GLOB ESP32_LED_STRIP_COMPONENT_SRCS "src/platforms/esp/32/led_strip/*.cpp")
 list(APPEND FastLED_SRCS ${ESP32_SRCS})
 
-idf_component_register(SRCS ${FastLED_SRCS} ${ESP32_LED_STRIP_COMPONENT_SRCS}
+idf_component_register(SRCS ${FastLED_SRCS} ${ESP32_RMT_COMPONENT_SRCS} ${ESP32_LED_STRIP_COMPONENT_SRCS} 
                        INCLUDE_DIRS "src"
-                       REQUIRES arduino-esp32)
+                       REQUIRES espressif__arduino-esp32)
 
 project(FastLED)
